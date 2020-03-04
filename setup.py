@@ -6,12 +6,13 @@ with open('README.md', 'r') as fh:
 
 setup(
         name='aws_adfs_login',
-        version='1.0.0',
+        version='1.0.1',
         author='David Poirier',
         author_email='david-poirier-csn@users.noreply.github.com',
         description='Python 3.6+ library to enable ADFS auth against AWS',
         long_description=long_description,
         long_description_content_type='text/markdown',
+        url='https://github.com/david-poirier-csn/aws_adfs_login',
         python_requires=">= 3.6",
         classifiers=[
             'Programming Language :: Python :: 3',
@@ -20,10 +21,10 @@ setup(
             'Operating System :: POSIX :: Linux'
             ],
         keywords='adfs',
-        url='https://github.com/david-poirier-csn/aws_adfs_login',
         packages=find_packages('src'),
         package_dir={'': 'src'},
         py_modules=[splitext(basename(path))[0] for path in glob.glob('src/*.py')],
         include_package_data=True,
+        install_requires=['beautifulsoup4','boto3','requests'],
     )
 

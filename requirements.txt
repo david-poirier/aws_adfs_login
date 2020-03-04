@@ -1,0 +1,24 @@
+attrs==19.3.0
+# Editable install with no version control (aws-adfs-login==1.0.0)
+-e /Users/david.poirier/src/aws_adfs_login/src
+beautifulsoup4==4.8.2
+boto3==1.12.12
+botocore==1.15.12
+certifi==2019.11.28
+chardet==3.0.4
+docutils==0.15.2
+idna==2.9
+jmespath==0.9.5
+more-itertools==8.2.0
+packaging==20.1
+pluggy==0.13.1
+py==1.8.1
+pyparsing==2.4.6
+pytest==5.3.5
+python-dateutil==2.8.1
+requests==2.23.0
+s3transfer==0.3.3
+six==1.14.0
+soupsieve==2.0
+urllib3==1.25.8
+wcwidth==0.1.8

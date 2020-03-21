@@ -21,7 +21,6 @@ class AwsRole:
 
     def get_credentials(self, duration_seconds=60*60):
         client = boto3.client('sts')
-        # try to get max duration, back off by half each time until successful
         result = client.assume_role_with_saml(
                 RoleArn=self.role_arn,
                 PrincipalArn=self.principal_arn,
@@ -33,7 +32,26 @@ class AwsRole:
         session_token = result['Credentials']['SessionToken']
         expiry = result['Credentials']['Expiration']
 
-        return key_id, secret, session_token, expiry
+        credentials = AwsCredentials(
+                key_id, secret, session_token, expiry)
+        return credentials
+
+
+class AwsCredentials:
+    def __init__(self, key_id, secret, session_token, expiry):
+        self.key_id = key_id
+        self.secret = secret
+        self.session_token = session_token
+        self.expiry = expiry
+
+    def get_client(self, service, region_name='us-east-1'):
+        client = boto3.client(
+                service,
+                region_name=region_name,
+                aws_access_key_id=self.key_id,
+                aws_secret_access_key=self.secret,
+                aws_session_token=self.session_token)
+        return client
 
 
 def _input(name, obfuscate=False):
